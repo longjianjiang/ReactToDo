@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addTodo } from "../redux/list/action";
 
-function Form(props) {
+function AddTodo({ dispatch }) {
     const [name, setName] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
         if (!name.trim()) { return; }
-        props.addTask(name);
+        console.log("name = " + name);
+        dispatch(addTodo(name));
         setName("");
     }
 
@@ -37,4 +40,4 @@ function Form(props) {
     );
 }
 
-export default Form;
+export default connect()(AddTodo)
