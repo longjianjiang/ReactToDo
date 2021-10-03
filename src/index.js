@@ -6,15 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './redux';
 
-const DATA = [
-  { id: "todo-0", name: "Eat", completed: true },
-  { id: "todo-1", name: "Sleep", completed: false },
-  { id: "todo-2", name: "Repeat", completed: false }
-];
-
 ReactDOM.render(
   <Provider store={store}>
-    <App tasks={DATA}/>
+    <App />
   </Provider>,
   document.getElementById('root')
 );

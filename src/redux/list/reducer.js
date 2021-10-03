@@ -3,7 +3,6 @@ import { ADD_TODO, TOGGLE_TODO, DELETE_TODO } from "./action";
 export default function list(state = [], action) {
     switch (action.type) {
         case ADD_TODO:
-            console.log(state)
             return [
                 ...state,
                 {

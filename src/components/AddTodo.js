@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../redux/list/action";
+import { store } from "../redux";
 
 function AddTodo({ dispatch }) {
     const [name, setName] = useState("");
 
     function handleSubmit(e) {
+        const tmp = store.getState();
+        console.log(tmp);
         e.preventDefault();
         if (!name.trim()) { return; }
-        console.log("name = " + name);
         dispatch(addTodo(name));
         setName("");
     }
