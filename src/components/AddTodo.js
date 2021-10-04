@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addTodo } from "../redux/list/action";
+import { addTodo } from "../redux/todoList/action";
 import { store } from "../redux";
 
 function AddTodo({ dispatch }) {
