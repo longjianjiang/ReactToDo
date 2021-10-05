@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { addTodo } from "../redux/todoList/action";
 import { store } from "../redux";
 
-function AddTodo({ dispatch }) {
+function AddTodo(props) {
     const [name, setName] = useState("");
 
     function handleSubmit(e) {
@@ -11,7 +11,7 @@ function AddTodo({ dispatch }) {
         console.log(tmp);
         e.preventDefault();
         if (!name.trim()) { return; }
-        dispatch(addTodo(name));
+        props.dispatch(addTodo(name));
         setName("");
     }
 
