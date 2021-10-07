@@ -101,14 +101,16 @@ body {
 }
 .btn-group {
   display: flex;
-  justify-content: space-between;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  gap: 6px;
 }
 .btn-group > * {
-  flex: 1 1 49%;
+  flex: 0 0 auto;
 }
-.btn-group > * + * {
+/* .btn-group > * + * {
   margin-left: 0.8rem;
-}
+} */
 .label-wrapper {
   margin: 0;
   flex: 0 0 100%;
@@ -290,3 +292,5 @@ body {
 .c-cb > input[type="checkbox"]:checked + label::after {
   opacity: 1;
 }
+
+/*filters btn-group stack-exception*/
