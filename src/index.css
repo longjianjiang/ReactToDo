@@ -101,16 +101,25 @@ body {
 }
 .btn-group {
   display: flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
-  gap: 6px;
+  justify-content: space-between;
 }
 .btn-group > * {
-  flex: 0 0 auto;
+  flex: 1 1 49%;
 }
-/* .btn-group > * + * {
+.btn-group > * + * {
   margin-left: 0.8rem;
-} */
+}
+.filter-btn-group {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  /* gap: 10px; */
+}
+.filter-btn-group > * {
+  flex: 0 0 auto;
+  margin: 5px;
+  padding: 10px;
+}
 .label-wrapper {
   margin: 0;
   flex: 0 0 100%;

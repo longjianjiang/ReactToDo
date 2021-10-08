@@ -7,7 +7,11 @@ import FilterButton from "./components/FilterButton";
 const FILTER_MAP = {
     All: () => true,
     Active: task => !task.completed,
-    Completed: task => task.completed
+    Completed: task => task.completed,
+    TEST_1: () => true,
+    TEST_2: () => true,
+    TEST_3: () => true,
+    TEST_4: () => true,
 };
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
@@ -29,7 +33,7 @@ function App(props) {
     )
   );
   const filterList = FILTER_NAMES.map(name => (
-    <FilterButton
+    <FilterButton className="filter-btn-group-item"
       key={name}
       name={name}
       isPressed={name === filter}
@@ -74,7 +78,7 @@ function App(props) {
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
       <Form addTask={addTask} />
-      <div className="filters btn-group stack-exception">
+      <div className="filters filter-btn-group stack-exception">
           {filterList}
       </div>
       <h2 id="list-heading">{headingText}</h2>
