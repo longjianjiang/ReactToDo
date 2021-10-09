@@ -81,6 +81,7 @@ body {
 }
 .btn.toggle-btn {
   border-width: 1px;
+  margin: 0 6px 10px;
   border-color: #d3d3d3;
 }
 .btn.toggle-btn[aria-pressed="true"] {
@@ -114,11 +115,6 @@ body {
   flex-flow: row wrap;
   align-content: flex-start;
   /* gap: 10px; */
-}
-.filter-btn-group > * {
-  flex: 0 0 auto;
-  margin: 5px;
-  padding: 10px;
 }
 .label-wrapper {
   margin: 0;

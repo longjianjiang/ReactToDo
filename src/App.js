@@ -33,7 +33,7 @@ function App(props) {
     )
   );
   const filterList = FILTER_NAMES.map(name => (
-    <FilterButton className="filter-btn-group-item"
+    <FilterButton
       key={name}
       name={name}
       isPressed={name === filter}
