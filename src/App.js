@@ -8,10 +8,6 @@ const FILTER_MAP = {
     All: () => true,
     Active: task => !task.completed,
     Completed: task => task.completed,
-    TEST_1: () => true,
-    TEST_2: () => true,
-    TEST_3: () => true,
-    TEST_4: () => true,
 };
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
