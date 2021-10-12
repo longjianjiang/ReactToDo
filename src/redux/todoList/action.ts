@@ -5,7 +5,7 @@ export const EDIT_TODO = "EDIT_TODO";
 
 let nextTodoId = 0;
 
-export const addTodo = name => ({
+export const addTodo = (name: string) => ({
     type: ADD_TODO,
     payload: {
         id: nextTodoId++,
@@ -13,24 +13,26 @@ export const addTodo = name => ({
     }
 });
 
-export const toggleTodo = id => ({
+export const toggleTodo = (id: number) => ({
     type: TOGGLE_TODO,
     payload: { 
         id,
     }
 });
 
-export const deleteTodo = id => ({
+export const deleteTodo = (id: number) => ({
     type: DELETE_TODO,
     payload: {
         id,
     }
 });
 
-export const editTodo = (id, name) =>({
+export const editTodo = (id: number, name: string) =>({
     type: EDIT_TODO,
     payload: {
         id,
         name,
     }
 });
+
+export type ITodoListAction = ReturnType<typeof addTodo>;

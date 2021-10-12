@@ -1,18 +1,27 @@
 import React, {useState} from "react";
+import { ITodoListItem } from "../redux/todoList/todoList";
 
-export default function Todo(props) {
+interface ITodoProps {
+  id: string;
+  todoItem: ITodoListItem;
+  toggleTodo: (id: number) => any;
+  deleteTodo: (id: number) => any;
+  editTodo: (id: number, name: string) => any;
+};
+
+export default function Todo(props: ITodoProps) {
     const [isEditing, setEditing] = useState(false);
     const [newName, setNewName] = useState("");
 
-    function handleChange(e) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         setNewName(e.target.value);
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         if (!newName.trim()) { return; }
 
-        props.editTodo(props.id, newName);
+        props.editTodo(props.todoItem.id, newName);
         setNewName("");
         setEditing(false);
     }
@@ -21,7 +30,7 @@ export default function Todo(props) {
         <form className="stack-small" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="todo-label" htmlFor={props.id}>
-              New name for {props.name}
+              New name for {props.todoItem.name}
             </label>
             <input id={props.id} className="todo-text" type="text" onChange={handleChange}/>
           </div>
@@ -32,11 +41,11 @@ export default function Todo(props) {
                 onClick={() => setEditing(false)}
             >
               Cancel
-              <span className="visually-hidden">renaming {props.name}</span>
+              <span className="visually-hidden">renaming {props.todoItem.name}</span>
             </button>
             <button type="submit" className="btn btn__primary todo-edit">
               Save
-              <span className="visually-hidden">new name for {props.name}</span>
+              <span className="visually-hidden">new name for {props.todoItem.name}</span>
             </button>
           </div>
         </form>
@@ -47,11 +56,11 @@ export default function Todo(props) {
               <input
                 id={props.id}
                 type="checkbox"
-                defaultChecked={props.completed}
-                onChange={() => props.toggleTodo(props.id)}
+                defaultChecked={props.todoItem.completed}
+                onChange={() => props.toggleTodo(props.todoItem.id)}
               />
               <label className="todo-label" htmlFor={props.id}>
-                {props.name}
+                {props.todoItem.name}
               </label>
             </div>
             <div className="btn-group">
@@ -60,14 +69,14 @@ export default function Todo(props) {
                 className="btn"
                 onClick={() => setEditing(true)}
               >
-                Edit <span className="visually-hidden">{props.name}</span>
+                Edit <span className="visually-hidden">{props.todoItem.name}</span>
               </button>
               <button
                 type="button"
                 className="btn btn__danger"
-                onClick={() => props.deleteTodo(props.id)}
+                onClick={() => props.deleteTodo(props.todoItem.id)}
               >
-                Delete <span className="visually-hidden">{props.name}</span>
+                Delete <span className="visually-hidden">{props.todoItem.name}</span>
               </button>
             </div>
         </div>

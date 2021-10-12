@@ -1,22 +1,30 @@
 import React, { useState } from "react";
+import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { addTodo } from "../redux/todoList/action";
 import { store } from "../redux";
 
-function AddTodo(props) {
+interface IAddTodoProps {
+  name: string;
+  isPressed: boolean;
+};
+
+type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+
+function AddTodo(props: DispatchProps) {
     const [name, setName] = useState("");
 
-    function handleSubmit(e) {
-        const tmp = store.getState();
-        console.log(tmp);
+    function handleSubmit(e: React.FormEvent) {
+        // const tmp = store.getState();
+        // console.log(tmp);
         e.preventDefault();
         if (!name.trim()) { return; }
-        props.dispatch(addTodo(name));
+        props.addTodo(name);
         setName("");
     }
 
-    function handleChange(e) {
-        setName(e.target.value);
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+      setName(e.target.value);
     }
     
     return (
@@ -42,4 +50,9 @@ function AddTodo(props) {
     );
 }
 
-export default connect()(AddTodo)
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  addTodo: (name: string) => dispatch(addTodo(name)),
+});
+
+// null is necessary.
+export default connect(null, mapDispatchToProps)(AddTodo)

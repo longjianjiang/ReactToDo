@@ -1,9 +1,12 @@
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import TodoList from "../components/TodoList";
 import { toggleTodo, deleteTodo, editTodo } from "../redux/todoList/action";
-import { TodoFilterType } from "../redux/todoFilter/action";
+import { TodoFilterType } from "../redux/todoFilter/todoFilter";
+import { IStoreState } from "../redux/reducer";
+import { ITodoListItem } from "../redux/todoList/todoList";
 
-const getVisibleTodos = (todos, filter) => {    
+const getVisibleTodos = (todos: Array<ITodoListItem>, filter: TodoFilterType) => {    
     switch (filter) {
       case TodoFilterType.SHOW_ALL:
         return todos
@@ -16,14 +19,14 @@ const getVisibleTodos = (todos, filter) => {
     }
 }
 
-const mapStateToProps = state => ({
-    todoList: getVisibleTodos(state.todoList, state.todoFilter)
+const mapStateToProps = ({todoFilter, todoList}: IStoreState) => ({
+    todoList: getVisibleTodos(todoList.lists, todoFilter.filter)
 });
 
-const mapDispatchToProps = dispatch => ({
-  toggleTodo: id => dispatch(toggleTodo(id)),
-  deleteTodo: id => dispatch(deleteTodo(id)),
-  editTodo: (id, name) => dispatch(editTodo(id, name)),
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  toggleTodo: (id: number) => dispatch(toggleTodo(id)),
+  deleteTodo: (id: number) => dispatch(deleteTodo(id)),
+  editTodo: (id: number, name: string) => dispatch(editTodo(id, name)),
 });
 
 export default connect(

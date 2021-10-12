@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import AddTodo from "./components/AddTodo";
+import AddTodo from "./containers/AddTodo";
 import VisibleTodoList from "./containers/VisibleTodoList";
 import FilterList from "./containers/FilterList";
 import ListTitleHeader from "./containers/ListTitleHeader";

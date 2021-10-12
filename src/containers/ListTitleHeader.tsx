@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
+import { IStoreState } from "../redux/reducer";
 
-const InnerTitleHeader = ({count}) => (
-    <h2 id="list-heading">{count} tasks remaining</h2>
+const InnerTitleHeader = (props: {count: number}) => (
+    <h2 id="list-heading">{props.count} tasks remaining</h2>
 );
 
-const mapStateToProps = state => ({
-    count: state.todoList.length,
+const mapStateToProps = ( {todoList}: IStoreState) => ({
+    count: todoList.lists.length,
 });
 
 export default connect(
