@@ -1,8 +1,7 @@
-import React, {useState} from "react";
 import AddTodo from "./containers/AddTodo";
-import VisibleTodoList from "./containers/VisibleTodoList";
 import FilterList from "./containers/FilterList";
 import ListTitleHeader from "./containers/ListTitleHeader";
+import TodoList from "./components/TodoList";
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
       <AddTodo />
       <FilterList />
       <ListTitleHeader />
-      <VisibleTodoList />
+      <TodoList />
     </div>
   );
 }

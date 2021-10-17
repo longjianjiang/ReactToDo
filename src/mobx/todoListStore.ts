@@ -1,16 +1,20 @@
-import { makeObservable, observable, computed } from "mobx";
+import { makeObservable, observable, computed, action } from "mobx";
 import { ITodoListItem } from "../redux/todoList/todoList";
 
 let innerNextTodoId = 0;
 
-class TodoListStore {
+export class TodoListStore {
     public todos: Array<ITodoListItem> = [];
     
     constructor() {
         makeObservable(this, {
             todos: observable,
             completedTodos: computed,
-            incompleteTodos: computed
+            incompleteTodos: computed,
+            addTodo: action,
+            toggleTodo: action,
+            deleteTodo: action,
+            editTodo: action,
         });
     }
 
@@ -58,12 +62,3 @@ class TodoListStore {
 };
 
 export default new TodoListStore();
-
-/*
-decorate(TodoListStore, {
-    todos: observable,
-    todoProgress: computed,
-    completedTodos: computed,
-    incompleteTodos: computed
-});
-*/

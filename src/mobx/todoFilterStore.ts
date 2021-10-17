@@ -1,14 +1,19 @@
-import { observable, makeObservable } from "mobx";
+import { observable, makeObservable, action } from "mobx";
 import { TodoFilterType } from "../redux/todoFilter/todoFilter";
 
-class TodoFilterStore {
-    filter = TodoFilterType.SHOW_ALL;
-
+export class TodoFilterStore {
+    public filter = TodoFilterType.SHOW_ALL;
+    
     constructor() {
         makeObservable(this, {
             filter: observable,
+            setFilter: action,
         });
     }
+
+    public setFilter = (filter: TodoFilterType) => {
+        this.filter = filter;
+    };
 };
 
 export default new TodoFilterStore();

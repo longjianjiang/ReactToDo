@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   editTodo: (id: number, name: string) => dispatch(editTodo(id, name)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoList)
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(TodoList)
