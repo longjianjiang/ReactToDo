@@ -1,23 +1,22 @@
 import FilterButton from "../components/FilterButton";
 import { TodoFilterType } from "../redux/todoFilter/todoFilter";
 import { observer, inject } from "mobx-react";
-import TodoFilterStore from "../mobx/todoFilterStore";
-
+import TodoListStore from "../mobx/todoListStore";
 const FILTER_NAMES = Object.values(TodoFilterType);
 
 interface IFilterList {
-    todoFilter?: typeof TodoFilterStore,
+    todoList?: typeof TodoListStore,
 }
 
-const FilterList = inject("todoFilter")(observer((props: IFilterList) => {
+const FilterList = inject("todoList")(observer((props: IFilterList) => {
     return (
         <div className="filters btn-group stack-exception">
         {FILTER_NAMES.map(name => 
             <FilterButton
                 key={name}
                 name={name}
-                isPressed={name == props.todoFilter!.filter}
-                setFilter={props.todoFilter!.setFilter}
+                isPressed={name == props.todoList!.filter}
+                setFilter={props.todoList!.setFilter}
             />
         )}
     </div>

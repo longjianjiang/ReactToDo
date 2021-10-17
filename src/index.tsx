@@ -2,12 +2,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'mobx-react';
-import todoList from './mobx/todoListStore'
-import todoFilter from './mobx/todoFilterStore'
+import todoList from './mobx/todoListStore';
 
 const stores = {
   todoList,
-  todoFilter,
 };
 
 ReactDOM.render(

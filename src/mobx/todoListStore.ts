@@ -1,20 +1,23 @@
 import { makeObservable, observable, computed, action } from "mobx";
+import { TodoFilterType } from "../redux/todoFilter/todoFilter";
 import { ITodoListItem } from "../redux/todoList/todoList";
 
 let innerNextTodoId = 0;
 
 export class TodoListStore {
     public todos: Array<ITodoListItem> = [];
-    
+    public filter: TodoFilterType = TodoFilterType.SHOW_ALL;
+
     constructor() {
         makeObservable(this, {
             todos: observable,
-            completedTodos: computed,
-            incompleteTodos: computed,
+            filter: observable,
+            filterTodos: computed,
             addTodo: action,
             toggleTodo: action,
             deleteTodo: action,
             editTodo: action,
+            setFilter: action,
         });
     }
 
@@ -52,13 +55,19 @@ export class TodoListStore {
         this.todos = updated;
     };
 
-    get completedTodos() {
-        return this.todos.filter(todo => todo.completed);
-    }
+    public setFilter = (filter: TodoFilterType) => {
+        this.filter = filter;
+    };
 
-    get incompleteTodos() {
-        return this.todos.filter(todo => !todo.completed);
-    }
+    get filterTodos() {
+        if (this.filter == TodoFilterType.SHOW_COMPLETED) {
+            return this.todos.filter(todo => todo.completed); 
+        } else if (this.filter == TodoFilterType.SHOW_ACTIVE) {
+            return this.todos.filter(todo => !todo.completed);
+        }
+
+        return this.todos;
+    };
 };
 
 export default new TodoListStore();
